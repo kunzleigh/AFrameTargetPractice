@@ -19,27 +19,24 @@ AFRAME.registerComponent('gamestate', {
     waveSequence: {default: 0}
   },
 
-  gameEnd: function (newState, win) {
-    newState.state = 'STATE_GAME_WIN';
-    newState.isGameWin = true;
-  },
-
   init: function () {
     var self = this;
     var el = this.el;
-    var initialState = this.initialState;
     var state = this.data;
 
-    // Initial state.
-    if (!initialState) { initialState = state; }
+    registerHandler('start-game', function (newState) {
+      newState.isGameWin = false;
+      newState.state = 'STATE_PLAYING';
+      return newState;
+    });
 
-    el.emit('gamestate-initialized', {state: initialState});
     registerHandler('enemy-death', function (newState) {
       newState.points++;
       PEWVR.currentScore.points++;
       if (newState.points >= self.data.numEnemiesToWin) {
-        self.gameEnd(newState, true);
-     }
+        newState.state = 'STATE_GAME_WIN';
+        newState.isGameWin = true;
+      }
 
       newState.numEnemies--;
       // All enemies killed, advance wave.
@@ -50,7 +47,8 @@ AFRAME.registerComponent('gamestate', {
           newState.waveSequence = 0;
           newState.wave++;
           if (newState.wave >= WAVES.length) {
-            self.gameEnd(newState, true);
+            newState.state = 'STATE_GAME_WIN';
+            newState.isGameWin = true;
           }
         }
       }
@@ -66,12 +64,6 @@ AFRAME.registerComponent('gamestate', {
 
     registerHandler('enemy-spawn', function (newState) {
       newState.numEnemies++;
-      return newState;
-    });
-
-    registerHandler('start-game', function (newState) {
-      newState.isGameWin = false;
-      newState.state = 'STATE_PLAYING';
       return newState;
     });
 
