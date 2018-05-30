@@ -5,8 +5,7 @@ var MobileVRControls = require('../lib/mobile-vr-controls.js');
 
 AFRAME.registerComponent('gun', {
     schema: {
-        direction: { type: 'vec3' },   // Event to fire bullet.
-        on: { default: 'triggerdown' },  // Event to fire bullet.
+        direction: { type: 'vec3' }, // Direction which the bullets will be fired in
     },
 
     init: function () {
@@ -21,7 +20,9 @@ AFRAME.registerComponent('gun', {
 
         // Add keyboard listener.
         window.addEventListener('keydown', function (evt) {
-            if (evt.code === 'Space' || evt.keyCode === '32') { self.shoot(); }
+            if (evt.code === 'Space' || evt.keyCode === '32') { 
+                self.shoot();
+            }
         });
 
         // Add two separate listeners for mobile - window click and VR click
@@ -68,7 +69,7 @@ AFRAME.registerComponent('gun', {
             direction.normalize();
 
             // Ask system for bullet and set bullet position to starting point.
-            bulletEntity = this.el.sceneEl.systems.bullet.getBullet("playerBullet");
+            bulletEntity = this.el.sceneEl.systems.bullet.getBullet("playerbullet");
             bulletEntity.setAttribute('position', position);
             bulletEntity.setAttribute('bullet', {
                 direction: direction.clone(),

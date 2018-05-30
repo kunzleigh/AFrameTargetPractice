@@ -4,6 +4,7 @@ AFRAME.registerComponent('enemy', {
         color: { default: '#fff' },
         scale: { default: 1 },
     },
+
     init: function () {
         this.alive = true;
         this.hipBone = null;
@@ -17,7 +18,6 @@ AFRAME.registerComponent('enemy', {
 
         this.exploding = false;
         this.explodingDuration = 500 + Math.floor(Math.random() * 300);
-        this.el.addEventListener('hit', this.collided.bind(this));
     },
 
     collided: function () {

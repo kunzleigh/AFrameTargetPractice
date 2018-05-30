@@ -1,11 +1,11 @@
 PEWVR.registerBullet(
     // name
-    'playerBullet',
+    'playerbullet',
     // data
     {
         components: {
             bullet: {
-                name: 'playerBullet',
+                name: 'playerbullet',
                 maxSpeed: 1,
                 initialSpeed: 0.1,
                 acceleration: 0.4,
@@ -16,7 +16,7 @@ PEWVR.registerBullet(
                 radius: 0.2
             },
             'json-model': {
-                src: '#playerBullet',
+                src: '#playerbullet',
                 useObjectLoader: true,
             }
         },
@@ -37,8 +37,5 @@ PEWVR.registerBullet(
                 self.trail.scale.setY(0.001);
             });
         },
-        onHit: function (type) {
-            this.el.setAttribute('material', 'color', '#FFF');
-        }
     }
 );
