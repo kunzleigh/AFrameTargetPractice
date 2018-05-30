@@ -21,8 +21,6 @@ AFRAME.registerComponent('bullet', {
         // Call the initialization function on the registered bullet (setting scale, material, etc.)
         // See player.js for how bullet registration is done
         this.bullet.definition.init.call(this);
-        // Property to keep track of whether the bullet has hit a target
-        this.hit = false;
         // Empty 3d vector for the current bullet's direction
         this.direction = new THREE.Vector3();
         // Temporary object we will work with to store and modify direction/position properties of our bullet
@@ -118,7 +116,6 @@ AFRAME.registerComponent('bullet', {
      * @param enemyEntity Enemy Entity
      */
     hitObject: function (enemyEntity) {
-        this.hit = true;
         // Get the data property off the entity
         var enemyData = enemyEntity.getAttribute('enemy');
         // Create an explosion based on where the enemy is
@@ -132,7 +129,6 @@ AFRAME.registerComponent('bullet', {
      * Resets the bullet's properties and returns the bullet to the pool
      */
     resetBullet: function () {
-        this.hit = false;
         this.speed = this.data.initialSpeed;
 
         // You can reference the system directly if the component's name is the same as the entity's name
