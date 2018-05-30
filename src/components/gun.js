@@ -16,7 +16,6 @@ AFRAME.registerComponent('gun', {
 
         this.mobileVRControls = new MobileVRControls();
         this.coolingDown = false;  // Limit fire rate.
-        this.shoot = this.shoot.bind(this);
 
         // Add keyboard listener.
         window.addEventListener('keydown', function (evt) {

@@ -1,11 +1,3 @@
-PEWVR.currentScore = {
-    name: '',
-    points: 0,
-    time: 0,
-    shoots: 0,
-    validShoot: 0
-};
-
 AFRAME.registerComponent('gamestate', {
     schema: {
         // Enemy count in current scene
