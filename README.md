@@ -1,4 +1,6 @@
-# PEWVR
+# AFrameTargetPractice
+
+This project was created using A-Frame framework.
 
 ## Local Development
 

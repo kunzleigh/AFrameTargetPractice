@@ -21,7 +21,6 @@ require('./enemies/enemy_target.js');
 require('./components/curve-movement.js');
 require('./components/collision-helper.js');
 require('./components/gamestate.js');
-require('./components/gamestate-debug.js');
 require('./components/bullet.js');
 require('./components/enemy.js');
 require('./components/gun.js');

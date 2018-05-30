@@ -1,4 +1,3 @@
-/* globals AFRAME PEWVR THREE */
 AFRAME.registerComponent('bullet', {
     schema: {
         name: { default: '' },
@@ -12,11 +11,18 @@ AFRAME.registerComponent('bullet', {
     },
 
     init: function () {
+        // Reference to the starting enemy
         this.startEnemy = document.getElementById('start_enemy');
+        // Get the registered bullet from our pool
+        // This should've already been created in our gun component
         this.bullet = PEWVR.BULLETS[this.data.name];
+        // Call the initialization function on the registered bullet
+        // See player.js for how bullet registration is done
         this.bullet.definition.init.call(this);
         this.hit = false;
+        // Empty 3d vector for the current bullet's direction
         this.direction = new THREE.Vector3();
+        // Temporary object we will work with to store and modify direction/position properties of our bullet
         this.temps = {
             direction: new THREE.Vector3(),
             position: new THREE.Vector3()
@@ -24,6 +30,7 @@ AFRAME.registerComponent('bullet', {
     },
 
     update: function (oldData) {
+        // Update the acceleration/speed/starting position of the bullet entity
         var data = this.data;
         this.direction.set(data.direction.x, data.direction.y, data.direction.z);
         this.currentAcceleration = data.acceleration;
