@@ -1,5 +1,7 @@
 # AFrameTargetPractice
 
+Workshop Slides: http://bit.ly/2JePKCB
+
 This project was created using A-Frame framework.
 
 ## Environment Setup
