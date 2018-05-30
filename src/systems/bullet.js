@@ -1,7 +1,16 @@
 var PoolHelper = require('../lib/poolhelper.js');
 
+// Global Key-value store for registered bullets
+// Useful if you need to have different types of bullets
+// In our game, we only have one bullet (playerbullet)
 PEWVR.BULLETS = {};
 
+/**
+ * Registers a bullet
+ * @param {string} name Name of the bullet being registered
+ * @param {object} data Data associated with the player bullet
+ * @param {object} definition Collection of methods that can be ran with this specific bullet being registered
+ */
 PEWVR.registerBullet = function (name, data, definition) {
     if (PEWVR.BULLETS[name]) {
         throw new Error('The bullet `' + name + '` has been already registered. ' +
@@ -19,36 +28,45 @@ PEWVR.registerBullet = function (name, data, definition) {
 };
 
 AFRAME.registerSystem('bullet', {
+    /**
+     * Perform bullet system initialization
+     */
     init: function () {
-        var self = this;
         this.poolHelper = new PoolHelper('bullet', PEWVR.BULLETS, this.sceneEl);
         this.activeBullets = [];
-
-        this.sceneEl.addEventListener('gamestate-changed', function (evt) {
-            if ('state' in evt.detail.diff) {
-                if (evt.detail.state.state === 'STATE_GAME_WIN') {
-                    self.reset();
-                }
-            }
-        });
     },
 
-    reset: function (entity) {
-        var self = this;
-        this.activeBullets.forEach(function (bullet) {
-            self.returnBullet(bullet.getAttribute('bullet').name, bullet);
-        });
+    /**
+     * Retrieves a bullet entity from the pool
+     * 
+     * @param name Bullet name to request
+     */
+    getBullet: function (name) {
+        var bullet = this.poolHelper.requestEntity(name);
+        this.activeBullets.push(bullet);
+        return bullet;
     },
 
+    /**
+     * Returns the bullet entity back to the object pool
+     * 
+     * @param name Bullet entity name
+     * @param entity Entity to return
+     */
     returnBullet: function (name, entity) {
         this.activeBullets.splice(this.activeBullets.indexOf(entity), 1);
         this.poolHelper.returnEntity(name, entity);
     },
 
-    getBullet: function (name) {
+    /**
+     * Resets the bullet system
+     * 
+     * Returns all of the active bullets in the scene back to the object pool
+     */
+    reset: function () {
         var self = this;
-        var bullet = this.poolHelper.requestEntity(name);
-        this.activeBullets.push(bullet);
-        return bullet;
-    }
+        this.activeBullets.forEach(function (bullet) {
+            self.returnBullet(bullet.getAttribute('bullet').name, bullet);
+        });
+    },
 });

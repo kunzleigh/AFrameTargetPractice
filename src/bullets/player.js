@@ -22,7 +22,7 @@ PEWVR.registerBullet(
         },
         poolSize: 10
     },
-    // implementation
+    // implementation (definition)
     {
         init: function () {
             var el = this.el;

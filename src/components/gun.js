@@ -50,7 +50,9 @@ AFRAME.registerComponent('gun', {
             var matrixWorld;
             var self = this;
 
-            if (this.coolingDown) { return; }
+            if (this.coolingDown) { 
+                return;
+            }
 
             // Get firing entity's transformations.
 

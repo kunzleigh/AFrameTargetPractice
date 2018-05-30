@@ -37,7 +37,10 @@ AFRAME.registerComponent('enemy', {
 
     die: function () {
         this.alive = false;
-        this.reset();
+        if (this.data.name !== "enemy_start") {
+            // Don't reset the enemy entity if it was a starting enemy (we don't want it to appear again)
+            this.reset();
+        }
         this.system.onEnemyDeath(this.data.name, this.el);
     },
 
