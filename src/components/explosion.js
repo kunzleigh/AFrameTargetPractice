@@ -12,7 +12,7 @@ AFRAME.registerComponent('explosion', {
             this.materials[2].color.set(this.data.color);
             this.materials[4].color.set(this.data.color);
         } else if (this.data.type === 'bullet') {
-            this.data.scale *= 0.5; // HACK! remove!
+            this.data.scale *= 0.5;
             this.materials[0].color.set(this.data.color);
             this.materials[2].color.set(this.data.color);
         } else if (this.data.type === 'enemygun') {

@@ -17,7 +17,7 @@ AFRAME.registerComponent('bullet', {
         this.startEnemy = document.getElementById('start_enemy');
         // Get the registered bullet from our pool
         // This should've already been created in our gun component
-        this.bullet = PEWVR.BULLETS[this.data.name];
+        this.bullet = SP.BULLETS[this.data.name];
         // Call the initialization function on the registered bullet (setting scale, material, etc.)
         // See player.js for how bullet registration is done
         this.bullet.definition.init.call(this);

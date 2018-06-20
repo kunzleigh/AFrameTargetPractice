@@ -1,4 +1,4 @@
-window.PEWVR = {};
+window.SP = {};
 
 // Assets managment
 require('./a-asset-image.js')

@@ -1,4 +1,4 @@
-PEWVR.registerBullet(
+SP.registerBullet(
     // name
     'playerbullet',
     // data
@@ -25,6 +25,7 @@ PEWVR.registerBullet(
     // implementation (definition)
     {
         init: function () {
+            debugger;
             var el = this.el;
             var color = this.bullet.components.bullet.color;
             el.setAttribute('material', 'color', color);

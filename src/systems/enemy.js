@@ -1,15 +1,15 @@
 var PoolHelper = require('../lib/poolhelper.js');
 
-PEWVR.ENEMIES = {};
+SP.ENEMIES = {};
 
-PEWVR.registerEnemy = function (name, data, definition) {
-    if (PEWVR.ENEMIES[name]) {
+SP.registerEnemy = function (name, data, definition) {
+    if (SP.ENEMIES[name]) {
         throw new Error('The enemy `' + name + '` has been already registered. ' +
             'Check that you are not loading two versions of the same enemy ' +
             'or two different enemies of the same name.');
     }
 
-    PEWVR.ENEMIES[name] = {
+    SP.ENEMIES[name] = {
         poolSize: data.poolSize,
         components: data.components,
         definition: definition,
@@ -33,7 +33,7 @@ AFRAME.registerSystem('enemy', {
             return;
         }
 
-        this.poolHelper = new PoolHelper('enemy', PEWVR.ENEMIES, this.sceneEl);
+        this.poolHelper = new PoolHelper('enemy', SP.ENEMIES, this.sceneEl);
 
         this.activeEnemies = [];
 

@@ -1,4 +1,4 @@
-PEWVR.registerEnemy(
+SP.registerEnemy(
     // name
     'enemy_start',
     // data

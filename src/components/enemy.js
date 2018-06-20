@@ -8,9 +8,9 @@ AFRAME.registerComponent('enemy', {
     init: function () {
         this.alive = true;
         this.hipBone = null;
-        this.definition = PEWVR.ENEMIES[this.data.name].definition;
+        this.definition = SP.ENEMIES[this.data.name].definition;
         this.definition.init.call(this);
-        var comp = PEWVR.ENEMIES[this.data.name].components.enemy;
+        var comp = SP.ENEMIES[this.data.name].components.enemy;
         this.color = comp.color;
         this.scale = comp.scale;
 

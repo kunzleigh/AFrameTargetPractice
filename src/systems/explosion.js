@@ -1,15 +1,15 @@
 var PoolHelper = require('../lib/poolhelper.js');
 
-PEWVR.EXPLOSIONS = {};
+SP.EXPLOSIONS = {};
 
-PEWVR.registerExplosion = function (name, data, definition) {
-    if (PEWVR.EXPLOSIONS[name]) {
+SP.registerExplosion = function (name, data, definition) {
+    if (SP.EXPLOSIONS[name]) {
         throw new Error('The explosion `' + name + '` has been already registered. ' +
             'Check that you are not loading two versions of the same explosion ' +
             'or two different enemies of the same name.');
     }
 
-    PEWVR.EXPLOSIONS[name] = {
+    SP.EXPLOSIONS[name] = {
         poolSize: data.poolSize,
         components: data.components,
         definition: definition,
@@ -25,7 +25,7 @@ AFRAME.registerSystem('explosion', {
     },
 
     init: function () {
-        this.poolHelper = new PoolHelper('explosion', PEWVR.EXPLOSIONS, this.sceneEl);
+        this.poolHelper = new PoolHelper('explosion', SP.EXPLOSIONS, this.sceneEl);
         this.activeExplosions = [];
     },
 
@@ -64,7 +64,7 @@ AFRAME.registerSystem('explosion', {
 });
 
 
-PEWVR.registerExplosion(
+SP.registerExplosion(
     // name
     'enemy',
     // data
@@ -81,7 +81,7 @@ PEWVR.registerExplosion(
     }
 );
 
-PEWVR.registerExplosion(
+SP.registerExplosion(
     // name
     'enemygun',
     // data
@@ -99,7 +99,7 @@ PEWVR.registerExplosion(
 );
 
 
-PEWVR.registerExplosion(
+SP.registerExplosion(
     // name
     'bullet',
     // data
@@ -116,7 +116,7 @@ PEWVR.registerExplosion(
     }
 );
 
-PEWVR.registerExplosion(
+SP.registerExplosion(
     // name
     'background',
     // data
