@@ -6,7 +6,7 @@ var PoolHelper = require('../lib/poolhelper.js');
 SP.BULLETS = {};
 
 /**
- * Registers a bullet
+ * Registers a bullet into the bullet system (Ex: Player Bullet).
  * @param {string} name Name of the bullet being registered
  * @param {object} data Data associated with the player bullet
  * @param {object} definition Collection of methods that can be ran with this specific bullet being registered

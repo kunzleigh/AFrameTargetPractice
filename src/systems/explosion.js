@@ -20,10 +20,6 @@ SP.registerExplosion = function (name, data, definition) {
 };
 
 AFRAME.registerSystem('explosion', {
-    schema: {
-        wave: { default: 0 }
-    },
-
     init: function () {
         this.poolHelper = new PoolHelper('explosion', SP.EXPLOSIONS, this.sceneEl);
         this.activeExplosions = [];
@@ -72,58 +68,6 @@ SP.registerExplosion(
         components: {
             explosion: {
                 type: 'enemy',
-            },
-        },
-        poolSize: 10
-    },
-    // implementation
-    {
-    }
-);
-
-SP.registerExplosion(
-    // name
-    'enemygun',
-    // data
-    {
-        components: {
-            explosion: {
-                type: 'enemygun',
-            },
-        },
-        poolSize: 10
-    },
-    // implementation
-    {
-    }
-);
-
-
-SP.registerExplosion(
-    // name
-    'bullet',
-    // data
-    {
-        components: {
-            explosion: {
-                type: 'bullet',
-            },
-        },
-        poolSize: 10
-    },
-    // implementation
-    {
-    }
-);
-
-SP.registerExplosion(
-    // name
-    'background',
-    // data
-    {
-        components: {
-            explosion: {
-                type: 'background',
             },
         },
         poolSize: 10

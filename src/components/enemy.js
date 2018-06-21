@@ -7,7 +7,6 @@ AFRAME.registerComponent('enemy', {
 
     init: function () {
         this.alive = true;
-        this.hipBone = null;
         this.definition = SP.ENEMIES[this.data.name].definition;
         this.definition.init.call(this);
         var comp = SP.ENEMIES[this.data.name].components.enemy;
@@ -28,9 +27,10 @@ AFRAME.registerComponent('enemy', {
         this.exploding = true;
 
         var mesh = this.el.getObject3D('mesh');
-        this.whiteMaterial = new THREE.MeshBasicMaterial({ color: this.color, transparent: true });
+        // Store the current material of the object.
+        // We're going to restore the material on resetting the enemy
         mesh.normalMaterial = mesh.material;
-        mesh.material = this.whiteMaterial;
+        mesh.material = new THREE.MeshBasicMaterial({ color: this.color, transparent: true });
 
         this.system.activeEnemies.splice(this.system.activeEnemies.indexOf(this.el), 1);
     },

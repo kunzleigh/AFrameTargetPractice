@@ -44,7 +44,7 @@ AFRAME.registerComponent('bullet', {
     },
 
     /**
-     * Lifecycle hook invoked called on each rendering of the frame
+     * Lifecycle hook invoked on each rendering of the frame
      * @param time: Current timestamp in milliseconds (unused here)
      * @param delta: Time difference since the last frame's rendering in millliseconds
      */

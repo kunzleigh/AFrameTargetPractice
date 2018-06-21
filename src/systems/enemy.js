@@ -76,18 +76,17 @@ AFRAME.registerSystem('enemy', {
 
     createSequence: function (sequenceNumber) {
         var self = this;
-        var startOffset = this.currentWave.sequences[sequenceNumber].start || 0;
         setTimeout(function initFirstSequence() {
             self.currentSequence = sequenceNumber;
             var sequence = self.currentWave.sequences[sequenceNumber];
             sequence.enemies.forEach(function createEnemyFromDef(enemyDef) {
                 self.createEnemies(enemyDef);
             });
-        }, startOffset);
+        }, 100);
     },
 
     createWave: function (waveNumber) {
-        this.currentWave = WAVES[waveNumber % WAVES.length];
+        this.currentWave = WAVES[waveNumber];
         this.createSequence(0);
         this.sceneEl.emit('wave-created', { wave: this.currentWave });
     },
